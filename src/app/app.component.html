@@ -9,6 +9,23 @@
 <h1>{{title}}</h1>
 <app-heroes></app-heroes>
 
+<app-item-detail [itemb]="parentItem"></app-item-detail>
+
+<!-- 为list添加自定义项目，每个项目后面跟一个删除按钮，点击删除该行 -->
+<h2>组件通讯——input和output</h2>
+<app-item-output (newItemEvent)="addItem($event)"></app-item-output>
+<ul>
+    <li *ngFor="let item of items">{{item}}
+        <app-input-output [item]="item" (deleteRequest)="crossOffItem($event)"></app-input-output>
+    </li>
+</ul>
+
+<h2>组件通讯——双向数据绑定</h2>
+<app-sizer [(size)]="fontSizePx"></app-sizer>
+<!-- [()] 的写法是下边写法的 简写 -->
+<!-- <app-sizer [size]="fontSizePx" (sizeChange)="fontSizePx=$event"></app-sizer> -->
+
+<div [style.font-size.px]="fontSizePx">Resizable Text</div>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
